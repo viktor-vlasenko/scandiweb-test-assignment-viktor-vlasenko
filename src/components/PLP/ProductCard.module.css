@@ -1,0 +1,15 @@
+li {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: left;
+  padding: 1em;
+  margin: 0;
+  width: 24rem;
+  height: 27.75rem;
+  background: #ffffff;
+}
+
+li:hover {
+  box-shadow: 0 4px 35px rgba(168,172,176,0.19);
+}

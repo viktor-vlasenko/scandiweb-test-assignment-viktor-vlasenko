@@ -1,0 +1,36 @@
+.title {
+  position: relative;
+  margin: 80px 100px 100px 100px;
+  width: 299px;
+  height: 68px;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 42px;
+  line-height: 160%;
+  /* identical to box height, or 67px */
+
+  display: flex;
+  align-items: center;
+
+  /* --c-text */
+
+  color: #1d1f22;
+}
+
+.wrapper {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 40px;
+  row-gap: 100px;
+}
+
+ul {
+  position: relative;
+  max-width: 1440px;
+  margin: 100px;
+  padding: 0;
+  list-style: none;
+}
+
