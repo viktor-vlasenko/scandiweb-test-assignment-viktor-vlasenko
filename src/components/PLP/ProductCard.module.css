@@ -1,15 +1,80 @@
-li {
+.card {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: left;
-  padding: 1em;
+  align-items: center;
+  padding: 16px;
   margin: 0;
-  width: 24rem;
-  height: 27.75rem;
+  width: 386px;
+  height: 444px;
   background: #ffffff;
 }
 
-li:hover {
-  box-shadow: 0 4px 35px rgba(168,172,176,0.19);
+.card:hover,
+.card:focus {
+  box-shadow: 0 4px 35px rgba(168, 172, 176, 0.19);
+  cursor: pointer;
+}
+
+.crop {
+  width: 330px;
+  height: 354px;
+  overflow: hidden;
+}
+
+.crop img {
+  width: 330px;
+  height: 354px;
+  object-fit: contain;
+}
+
+.spacer {
+  width: 24px;
+  height: 24px;
+}
+
+.title {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 160%;
+  margin: 0;
+  color: #1d1f22;
+}
+
+.price {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 160%;
+  margin: 0;
+  color: #1d1f22;
+}
+
+.cart {
+  position: absolute;
+  visibility: hidden;
+  margin-left: 287px;
+  margin-bottom: 72px;
+  padding: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 26px;
+  background-color: #5ece7b;
+}
+
+.cart img {
+  position: inherit;
+  left: 13px;
+  top: 13px;
+}
+
+.card:hover .cart,
+.card:focus .cart {
+  visibility: visible;
+  cursor: pointer;
+}
+
+.out-of-stock {
+  color: #8d8f9a;
 }

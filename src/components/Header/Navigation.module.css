@@ -1,0 +1,26 @@
+.nav ul {
+  display: flex;
+  align-items: flex-start;
+  padding: 0;
+
+  width: 234px;
+  height: 56px;
+  left: 100px;
+  bottom: 0px;
+  list-style: none;
+}
+
+.nav a {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 4px 16px 32px;
+  color: #1d1f22;
+  text-decoration: none;
+}
+
+.nav a:hover,
+.nav a:active,
+.nav a.active {
+  border-bottom: 2px solid #5ece7b;
+}
