@@ -1,6 +1,7 @@
 import { Component } from "react";
 
 import Navigation from "./Navigation";
+import Actions from "./Actions/Actions";
 import classes from './Header.module.css'
 import logoIcon from '../../assets/a-logo.svg'
 
@@ -12,7 +13,7 @@ class Header extends Component {
         <span>
           <img src={logoIcon} alt='Logo of the shop'/>
         </span>
-        {/* <Actions /> */}
+        <Actions />
       </header>
     )
   }

@@ -27,6 +27,7 @@ class App extends Component {
               products {
                 id
                 name
+                brand
                 description
                 inStock
                 gallery

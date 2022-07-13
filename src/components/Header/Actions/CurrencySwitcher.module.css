@@ -1,0 +1,22 @@
+.switcher {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 0 0 0 10px;
+  background-color: #ffffff;
+  border: 0px #ffffff;
+}
+
+.switcher:hover {
+  cursor: pointer;
+}
+
+.switcher p {
+  margin: 0;
+  font-family: 'Raleway';
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 160%;
+  color: #1d1f22;
+}

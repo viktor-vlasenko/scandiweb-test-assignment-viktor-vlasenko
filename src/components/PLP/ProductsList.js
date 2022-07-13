@@ -15,8 +15,10 @@ class ProductList extends Component {
             <ProductCard
             key={product.id}
             name={product.name}
+            brand={product.brand}
             image={product.gallery[0]}
             price={product.prices[0].amount}
+            inStock={product.inStock}
           />
           ))}
         </ul>

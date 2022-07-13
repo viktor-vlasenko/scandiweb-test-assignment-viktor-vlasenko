@@ -1,0 +1,30 @@
+.list {
+  position: absolute;
+  right: 78px;
+  top: 50px;
+  padding: 12px 0;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+}
+
+.list li {
+  white-space: nowrap;
+  padding: 8px 40px 8px 20px;
+}
+
+.list li p {
+  margin:0;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 160%;
+}
+
+.list li:hover {
+  background-color: #eeeeee;
+  cursor: pointer;
+}
