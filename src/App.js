@@ -4,9 +4,11 @@ import { gql } from "@apollo/client";
 
 import Header from "./components/Header/Header";
 import ProductList from "./components/PLP/ProductsList";
+import PDP from "./pages/PDP";
+
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       loadedProducts: [],
       categoryName: "Category name",
@@ -44,7 +46,6 @@ class App extends Component {
         `,
       })
       .then((result) => {
-        console.log(result);
         this.setState({
           loadedProducts: result.data.category.products,
           categoryName: result.data.category.name,
@@ -65,9 +66,10 @@ class App extends Component {
         <Header />
         <Routes>
           <Route path="/" element={content} />
-          <Route path="/women" element={content}></Route>
-          <Route path="/men" element={content}></Route>
-          <Route path="/kids" element={content}></Route>
+          <Route path="/women" element={content} />
+          <Route path="/men" element={content} />
+          <Route path="/kids" element={content} />
+          <Route path="/productId" element={<PDP client={this.props.client}/>} />
         </Routes>
       </Fragment>
     );

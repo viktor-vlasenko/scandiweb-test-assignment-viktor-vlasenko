@@ -1,0 +1,39 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 5em 2.5em 38em 5em 18.25em;
+  padding: 5em 13.7em 6.25em 6.25em;
+}
+
+.gallery {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.gallery img {
+  width: 5em;
+  height: 5em;
+  cursor: pointer;
+}
+
+.crop {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  width: 38em;
+  height: 32em;
+  overflow: hidden;
+}
+
+.image {
+  width: 38em;
+  height: 32em;
+  object-fit: contain;
+}
+
+.description {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  background-color: rgb(210, 210, 210);
+}
