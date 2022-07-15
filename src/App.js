@@ -69,7 +69,7 @@ class App extends Component {
           <Route path="/women" element={content} />
           <Route path="/men" element={content} />
           <Route path="/kids" element={content} />
-          <Route path="/productId" element={<PDP client={this.props.client}/>} />
+          <Route path="/:productId" element={<PDP  client={this.props.client}/>} />
         </Routes>
       </Fragment>
     );

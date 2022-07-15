@@ -1,0 +1,63 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-items: left;
+}
+
+.wrapper .brand {
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 27px;
+  color: #1d1f22;
+}
+
+.wrapper .name {
+  margin: 1em 0 0 0;
+  padding: 0;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 27px;
+  color: #1d1f22;
+}
+
+.wrapper h4 {
+  margin: 24px 0 8px 0;
+  padding: 0;
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  text-transform: uppercase;
+  color: #1d1f22;
+}
+
+.wrapper .price {
+  margin: 1em 0 1.25em 0;
+}
+
+.wrapper .amount {
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.5em;
+  line-height: 46px;
+  color: #1d1f22;
+}
+
+.wrapper .button {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 120%;
+  padding: 1em 5.25em;
+}

@@ -1,9 +1,15 @@
 import { Component } from "react";
 
+import classes from "./Button.module.css";
+
 class Button extends Component {
   render() {
     return (
-      <button onClick={this.props.onClick} value={this.props.value}>
+      <button
+        className={`${classes.button} ${this.props.className}`}
+        onClick={this.props.onClick}
+      >
+        {this.props.text}
         {this.props.children}
       </button>
     );
