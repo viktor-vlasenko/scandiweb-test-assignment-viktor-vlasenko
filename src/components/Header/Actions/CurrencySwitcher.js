@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import arrowDownIcon from "../../../assets/arrow-down.svg";
 import arrowUpIcon from "../../../assets/arrow-up.svg";
@@ -29,9 +30,13 @@ class CurrencySwitcher extends Component {
     });
   }
 
+  currencyMenuClose() {
+    this.setState({ isClosed: true });
+  }
+
   handleClickOutside(event) {
     if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
-      this.setState({ isClosed: true });
+      this.currencyMenuClose();
     }
   }
 
@@ -42,16 +47,22 @@ class CurrencySwitcher extends Component {
           onClick={this.currencyMenuToggle.bind(this)}
           className={classes.switcher}
         >
-          <p>$</p>
+          <p>{this.props.symbol}</p>
           <img
             src={this.state.isClosed ? arrowDownIcon : arrowUpIcon}
             alt="Opens and closes currency switcher menu"
           />
         </button>
-        {!this.state.isClosed && <CurrencySwitcherMenu />}
+        {!this.state.isClosed && (
+          <CurrencySwitcherMenu menuClose={this.currencyMenuClose.bind(this)} />
+        )}
       </div>
     );
   }
 }
 
-export default CurrencySwitcher;
+const mapStateToProps = (state) => ({
+  symbol: state.currency.symbol,
+});
+
+export default connect(mapStateToProps)(CurrencySwitcher);

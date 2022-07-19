@@ -1,10 +1,16 @@
 import { Component, Fragment } from "react";
+import { connect } from "react-redux";
 
 import ProductCard from "./ProductCard";
 import classes from "./ProductList.module.css";
 
 class ProductList extends Component {
-  
+  findPrice(product) {
+    const foundPrice = product.prices.find(
+      (price) => price.currency.symbol === this.props.symbol
+    );
+    return foundPrice;
+  }
 
   render() {
     return (
@@ -13,13 +19,14 @@ class ProductList extends Component {
         <ul className={classes.wrapper}>
           {this.props.productList.map((product) => (
             <ProductCard
-            key={product.id}
-            name={product.name}
-            brand={product.brand}
-            image={product.gallery[0]}
-            price={product.prices[0].amount}
-            inStock={product.inStock}
-          />
+              key={product.id}
+              name={product.name}
+              brand={product.brand}
+              image={product.gallery[0]}
+              price={this.findPrice(product).amount}
+              inStock={product.inStock}
+              symbol={this.props.symbol}
+            />
           ))}
         </ul>
       </Fragment>
@@ -27,4 +34,8 @@ class ProductList extends Component {
   }
 }
 
-export default ProductList;
+const mapStateToProps = (state) => ({
+  symbol: state.currency.symbol,
+});
+
+export default connect(mapStateToProps)(ProductList);

@@ -1,5 +1,6 @@
 import { Component } from "react";
 
+import CurrencySwitcherMenuItem from "./CurrencySwitcherMenuItem";
 import classes from "./CurrencySwitcherMenu.module.css";
 
 const CURRENCY_LIST = [
@@ -30,9 +31,12 @@ class CurrencySwitcherMenu extends Component {
     return (
       <ul className={classes.list}>
         {CURRENCY_LIST.map((currency) => (
-          <li key={currency.label}>
-            <p>{currency.symbol} {currency.label}</p>
-          </li>
+          <CurrencySwitcherMenuItem
+            key={currency.label}
+            currencyLabel={currency.label}
+            currencySymbol={currency.symbol}
+            menuClose={this.props.menuClose.bind(this)}
+          />
         ))}
       </ul>
     );

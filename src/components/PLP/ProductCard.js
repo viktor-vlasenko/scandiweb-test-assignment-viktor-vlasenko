@@ -5,42 +5,42 @@ import cartIcon from "../../assets/Empty Cart.svg";
 
 class ProductCard extends Component {
   render() {
+    const { name, brand, inStock, image, price, symbol } = this.props;
+
     return (
       <li className={classes.card}>
         <div className={classes.crop}>
-          {!this.props.inStock && (
+          {!inStock && (
             <div className={classes["out-of-stock"]}>
               <div className={classes.overlay} />
               <p className={classes.text}>OUT OF STOCK</p>
             </div>
           )}
 
-          <img
-            src={this.props.image}
-            alt={this.props.brand + " " + this.props.name}
-          />
+          <img src={image} alt={brand + " " + name} />
         </div>
 
-        {this.props.inStock && (
+        {inStock && (
           <div className={classes.cart}>
             <img src={cartIcon} alt="Add to cart" />
           </div>
         )}
-        
+
         <div className={classes.spacer} />
         <p
           className={`${classes.title} ${
-            !this.props.inStock && classes["out-of-stock-content"]
+            !inStock && classes["out-of-stock-content"]
           }`}
         >
-          {this.props.brand + " " + this.props.name}
+          {brand + " " + name}
         </p>
         <p
           className={`${classes.price} ${
-            !this.props.inStock && classes["out-of-stock-content"]
+            !inStock && classes["out-of-stock-content"]
           }`}
         >
-          ${this.props.price}
+          {symbol}
+          {price}
         </p>
       </li>
     );
