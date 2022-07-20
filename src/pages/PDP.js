@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { gql } from "@apollo/client/core";
+import { withRouter } from "react-router";
 
 import ProductDetails from "../components/PDP/ProductDetails";
 
@@ -16,9 +17,10 @@ class PDP extends Component {
   getProductDetails = (productId) => {
     this.props.client
       .query({
+        variables: { productId },
         query: gql`
-          {
-            product(id: ${productId}) {
+          query Product($productId: String!) {
+            product(id: $productId) {
               name
               brand
               gallery
@@ -44,7 +46,6 @@ class PDP extends Component {
         `,
       })
       .then((result) => {
-        console.log(result);
         this.setState({
           loading: result.loading,
           productDetails: result.data.product,
@@ -57,7 +58,9 @@ class PDP extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
-    this.getProductDetails(this.props.productId);
+    const { productId } = this.props.match.params;
+    console.log(typeof productId, productId);
+    this.getProductDetails(productId);
   }
 
   render() {
@@ -79,4 +82,4 @@ class PDP extends Component {
   }
 }
 
-export default PDP;
+export default withRouter(PDP);

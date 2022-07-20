@@ -1,10 +1,18 @@
 import { Component } from "react";
+import { connect } from "react-redux";
 
 import Button from "../UI/Button";
 import Attributes from "./Attributes";
 import classes from "./ProductDescription.module.css";
 
 class ProductDescription extends Component {
+  findPrice(product) {
+    const foundPrice = product.prices.find(
+      (price) => price.currency.symbol === this.props.symbol
+    );
+    return foundPrice;
+  }
+
   render() {
     const product = this.props.product;
 
@@ -16,8 +24,8 @@ class ProductDescription extends Component {
         <div className={classes.price}>
           <h4>PRICE:</h4>
           <p className={classes.amount}>
-            {product.prices[0].currency.symbol}
-            {product.prices[0].amount}
+            {this.props.symbol}
+            {this.findPrice(product).amount}
           </p>
         </div>
         <Button text="ADD TO CART" className={classes.button} />
@@ -27,4 +35,8 @@ class ProductDescription extends Component {
   }
 }
 
-export default ProductDescription;
+const mapStateToProps = (state) => ({
+  symbol: state.currency.symbol,
+});
+
+export default connect(mapStateToProps)(ProductDescription);

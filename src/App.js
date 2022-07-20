@@ -1,24 +1,36 @@
 import { Component, Fragment } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import Header from "./components/Header/Header";
 import PDP from "./pages/PDP";
 import PLP from "./pages/PLP";
-import CartPage from './pages/CartPage'
+import CartPage from "./pages/CartPage";
 
 class App extends Component {
   render() {
     return (
       <Fragment>
         <Header />
-        <Routes>
-          <Route path="/" element={<PLP client={this.props.client} />} />
-          <Route path="/women" element={<PLP client={this.props.client} />} />
-          <Route path="/men" element={<PLP client={this.props.client} />} />
-          <Route path="/kids" element={<PLP client={this.props.client} />} />
-          <Route path="/:productId" element={<PDP client={this.props.client} />} />
-          <Route path='/cart' element={<CartPage />} />
-        </Routes>
+        <Switch>
+          <Route path="/" exact>
+            <PLP client={this.props.client} />
+          </Route>
+          <Route path="/women" exact>
+            <PLP client={this.props.client} />
+          </Route>
+          <Route path="/men" exact>
+            <PLP client={this.props.client} />
+          </Route>
+          <Route path="/kids" exact>
+            <PLP client={this.props.client} />
+          </Route>
+          <Route path="/cart" exact>
+            <CartPage />
+          </Route>
+          <Route path="/:productId" exact>
+            <PDP client={this.props.client} />
+          </Route>
+        </Switch>
       </Fragment>
     );
   }

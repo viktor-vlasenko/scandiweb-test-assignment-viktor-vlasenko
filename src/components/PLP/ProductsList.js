@@ -20,6 +20,7 @@ class ProductList extends Component {
           {this.props.productList.map((product) => (
             <ProductCard
               key={product.id}
+              id={product.id}
               name={product.name}
               brand={product.brand}
               image={product.gallery[0]}

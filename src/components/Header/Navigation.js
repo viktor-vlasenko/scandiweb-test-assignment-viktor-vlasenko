@@ -9,26 +9,17 @@ class Navigation extends Component {
       <nav className={classes.nav}>
         <ul>
           <li>
-            <NavLink
-              className={(navData) => (navData.isActive ? classes.active : "")}
-              to="/"
-            >
+            <NavLink activeClassName={classes.active} to="/" exact>
               WOMEN
             </NavLink>
           </li>
           <li>
-            <NavLink
-              className={(navData) => (navData.isActive ? classes.active : "")}
-              to="/men"
-            >
+            <NavLink activeClassName={classes.active} to="/men">
               MEN
             </NavLink>
           </li>
           <li>
-            <NavLink
-              className={(navData) => (navData.isActive ? classes.active : "")}
-              to="/kids"
-            >
+            <NavLink activeClassName={classes.active} to="/kids">
               KIDS
             </NavLink>
           </li>
