@@ -16,6 +16,7 @@
   width: 5em;
   height: 5em;
   cursor: pointer;
+  object-fit: cover;
 }
 
 .crop {

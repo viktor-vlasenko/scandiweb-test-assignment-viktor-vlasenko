@@ -6,3 +6,32 @@
   width: 102px;
   height: 40px;
 }
+
+.actions button {
+  background-color: #ffffff;
+  border: 0px #ffffff;
+  cursor: pointer;
+}
+
+.number {
+  position: absolute;
+  padding: 0.12em 0.1em 0.1em;
+  top: 1.5em;
+  right: 7em;
+  min-width: 1.5em;
+  width: fit-content;
+  min-height: 1.5em;
+  height: fit-content;
+  border-radius: 1em;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1em;
+  line-height: 1.2em;
+  text-align: center;
+  justify-content: baseline;
+
+  color: #ffffff;
+  background-color: #1d1f22;
+}

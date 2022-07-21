@@ -1,16 +1,23 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 
+import { cartActions } from "../../store/cart-slice";
 import Button from "../UI/Button";
 import Attributes from "./Attributes";
 import classes from "./ProductDescription.module.css";
 
 class ProductDescription extends Component {
+
+
   findPrice(product) {
     const foundPrice = product.prices.find(
       (price) => price.currency.symbol === this.props.symbol
     );
     return foundPrice;
+  }
+
+  addToCartHandler() {
+    this.props.dispatch(cartActions.addItem({ ...this.props.product }));
   }
 
   render() {
@@ -20,7 +27,9 @@ class ProductDescription extends Component {
       <section className={classes.wrapper}>
         <h2 className={classes.brand}>{product.brand}</h2>
         <h3 className={classes.name}>{product.name}</h3>
-        <Attributes attributes={product.attributes} />
+        <Attributes
+          attributes={product.attributes}
+        />
         <div className={classes.price}>
           <h4>PRICE:</h4>
           <p className={classes.amount}>
@@ -28,7 +37,11 @@ class ProductDescription extends Component {
             {this.findPrice(product).amount}
           </p>
         </div>
-        <Button text="ADD TO CART" className={classes.button} />
+        <Button
+          text="ADD TO CART"
+          className={classes.button}
+          onClick={this.addToCartHandler.bind(this)}
+        />
         <div dangerouslySetInnerHTML={{ __html: product.description }}></div>
       </section>
     );

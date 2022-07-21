@@ -8,7 +8,11 @@
 }
 
 .text-attr-item {
-  padding: 13px 22px;
+  width: 4em;
+  height: 2.81em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid #1d1f22;
   cursor: pointer;
   font-family: "Source Sans Pro";
@@ -20,7 +24,7 @@
   color: #1d1f22;
 }
 
-.selected-text-attribute,
+.selected-text-attribute-item,
 .text-attr-item:hover {
   color: #ffffff;
   background-color: #1d1f22;
@@ -30,6 +34,19 @@
   display: flex;
   gap: 8px;
 }
-/* 
+
 .swatch-attr-item {
-  /* TO DO */
+  border: 2px solid rgba(255, 255, 255, 0);
+}
+
+.swatch-attr-item div {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.selected-swatch-attr-item,
+.swatch-attr-item:hover {
+  border: 1px solid #5ece7b;
+  padding: 1px;
+}

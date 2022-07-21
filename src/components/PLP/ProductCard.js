@@ -9,7 +9,7 @@ class ProductCard extends Component {
     const { id, name, brand, inStock, image, price, symbol } = this.props;
 
     return (
-      <Link to={id}>
+      <Link to={id} className={classes.link}>
         <li className={classes.card}>
           <div className={classes.crop}>
             {!inStock && (

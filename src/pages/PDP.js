@@ -59,7 +59,6 @@ class PDP extends Component {
   componentDidMount() {
     this.setState({ loading: true });
     const { productId } = this.props.match.params;
-    console.log(typeof productId, productId);
     this.getProductDetails(productId);
   }
 

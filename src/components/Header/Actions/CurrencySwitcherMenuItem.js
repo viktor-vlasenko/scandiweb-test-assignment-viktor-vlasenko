@@ -30,4 +30,4 @@ const mapStateToProps = (state) => ({
   symbol: state.currency.symbol,
 });
 
-export default connect(mapStateToProps, null)(CurrencySwitcherMenuItem);
+export default connect(mapStateToProps)(CurrencySwitcherMenuItem);
