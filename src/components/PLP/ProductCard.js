@@ -1,15 +1,15 @@
 import { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
 
 import classes from "./ProductCard.module.css";
 import cartIcon from "../../assets/Empty Cart.svg";
-import { Link } from "react-router-dom";
 
 class ProductCard extends Component {
   render() {
     const { id, name, brand, inStock, image, price, symbol } = this.props;
 
     return (
-      <Link to={id} className={classes.link}>
+      <Link to={`/product/${id}`} className={classes.link}>
         <li className={classes.card}>
           <div className={classes.crop}>
             {!inStock && (
@@ -50,4 +50,4 @@ class ProductCard extends Component {
   }
 }
 
-export default ProductCard;
+export default withRouter(ProductCard);

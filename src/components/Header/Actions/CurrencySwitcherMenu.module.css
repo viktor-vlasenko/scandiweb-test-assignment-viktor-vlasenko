@@ -1,8 +1,8 @@
 .list {
-  position: absolute;
-  right: 78px;
-  top: 50px;
+  position: fixed;
   padding: 12px 0;
+  margin-left: -0.6em;
+  top: 2.8em;
   background: #ffffff;
   display: flex;
   flex-direction: column;
@@ -16,8 +16,8 @@
 }
 
 .list li p {
-  margin:0;
-  font-family: 'Raleway';
+  margin: 0;
+  font-family: "Raleway";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;

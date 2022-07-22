@@ -17,7 +17,7 @@ class ProductList extends Component {
       <Fragment>
         <h2 className={classes.category}>{this.props.categoryName}</h2>
         <ul className={classes.wrapper}>
-          {this.props.productList.map((product) => (
+          {this.props.productList && this.props.productList.map((product) => (
             <ProductCard
               key={product.id}
               id={product.id}

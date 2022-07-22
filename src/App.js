@@ -1,5 +1,6 @@
 import { Component, Fragment } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { withApollo } from "@apollo/client/react/hoc";
 
 import Header from "./components/Header/Header";
 import PDP from "./pages/PDP";
@@ -7,28 +8,24 @@ import PLP from "./pages/PLP";
 import CartPage from "./pages/CartPage";
 
 class App extends Component {
+  getDefaultCategoryName() {}
+
   render() {
     return (
       <Fragment>
         <Header />
         <Switch>
           <Route path="/" exact>
-            <PLP client={this.props.client} />
+            <PLP />
           </Route>
-          <Route path="/women" exact>
-            <PLP client={this.props.client} />
-          </Route>
-          <Route path="/men" exact>
-            <PLP client={this.props.client} />
-          </Route>
-          <Route path="/kids" exact>
-            <PLP client={this.props.client} />
+          <Route path="/:category" exact>
+            <PLP />
           </Route>
           <Route path="/cart" exact>
             <CartPage />
           </Route>
-          <Route path="/:productId" exact>
-            <PDP client={this.props.client} />
+          <Route path="/product/:productId" exact>
+            <PDP />
           </Route>
         </Switch>
       </Fragment>
@@ -36,4 +33,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withApollo(App);

@@ -1,5 +1,7 @@
 import { Component } from "react";
 import { gql } from "@apollo/client";
+import { withRouter } from "react-router";
+import { withApollo } from "@apollo/client/react/hoc";
 
 import ProductList from "../components/PLP/ProductsList";
 
@@ -7,8 +9,7 @@ class PLP extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loadedProducts: [],
-      categoryName: "Category name",
+      loadedData: undefined,
     };
   }
 
@@ -21,7 +22,7 @@ class PLP extends Component {
       .query({
         query: gql`
           {
-            category {
+            categories {
               name
               products {
                 id
@@ -44,20 +45,28 @@ class PLP extends Component {
       })
       .then((result) => {
         this.setState({
-          loadedProducts: result.data.category.products,
-          categoryName: result.data.category.name,
+          loadedData: result.data.categories,
         });
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   render() {
+    let { category } = this.props.match.params;
+    if (!category && this.state.loadedData) {
+      category = this.state.loadedData[0].name;
+    }
+    let productsInCategory;
+    if (this.state.loadedData) {
+      productsInCategory = this.state.loadedData.find(
+        (loadedCategory) => loadedCategory.name === category
+      ).products;
+    }
+
     return (
-      <ProductList
-        categoryName={this.state.categoryName}
-        productList={this.state.loadedProducts}
-      />
+      <ProductList categoryName={category} productList={productsInCategory} />
     );
   }
 }
 
-export default PLP;
+export default withApollo(withRouter(PLP));

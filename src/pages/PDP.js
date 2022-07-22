@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { gql } from "@apollo/client/core";
 import { withRouter } from "react-router";
+import { withApollo } from "@apollo/client/react/hoc";
 
 import ProductDetails from "../components/PDP/ProductDetails";
 
@@ -81,4 +82,4 @@ class PDP extends Component {
   }
 }
 
-export default withRouter(PDP);
+export default withApollo(withRouter(PDP));
