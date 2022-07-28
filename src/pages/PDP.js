@@ -22,6 +22,7 @@ class PDP extends Component {
         query: gql`
           query Product($productId: String!) {
             product(id: $productId) {
+              id
               name
               brand
               gallery

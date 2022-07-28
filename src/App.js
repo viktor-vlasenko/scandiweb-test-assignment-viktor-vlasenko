@@ -1,5 +1,5 @@
 import { Component, Fragment } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { withApollo } from "@apollo/client/react/hoc";
 
 import Header from "./components/Header/Header";
@@ -18,11 +18,11 @@ class App extends Component {
           <Route path="/" exact>
             <PLP />
           </Route>
-          <Route path="/:category" exact>
-            <PLP />
-          </Route>
           <Route path="/cart" exact>
             <CartPage />
+          </Route>
+          <Route path="/:category" exact>
+            <PLP />
           </Route>
           <Route path="/product/:productId" exact>
             <PDP />

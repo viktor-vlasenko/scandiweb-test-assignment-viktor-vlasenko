@@ -1,0 +1,41 @@
+.gallery {
+  position: relative;
+  flex: 4.4;
+  width: 200px;
+  height: 288px;
+}
+
+.gallery img {
+  width: 200px;
+  height: 288px;
+  overflow: hidden;
+  object-fit: contain;
+}
+
+.controls {
+  position: absolute;
+  right: 1em;
+  bottom: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.controls button {
+  height: 24px;
+  width: 24px;
+  background-color: rgba(0, 0, 0, 0.73);
+  border: 0px solid;
+  cursor: pointer;
+}
+
+.controls button img {
+  padding: 3px 2px 0 0;
+  height: 12px;
+  width: 12px;
+}
+
+.right {
+  transform: scaleX(-1);
+}

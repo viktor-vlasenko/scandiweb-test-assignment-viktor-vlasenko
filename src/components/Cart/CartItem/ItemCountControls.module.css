@@ -1,0 +1,27 @@
+.controls {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.controls button {
+  height: 45px;
+  width: 45px;
+  background-color: white;
+  border: 1px solid #1d1f22;
+  font-family: "Raleway";
+  font-size: 2em;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.controls p {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 160%;
+  color: #1d1f22;
+}

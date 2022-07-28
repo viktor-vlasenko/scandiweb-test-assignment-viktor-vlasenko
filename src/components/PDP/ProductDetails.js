@@ -16,7 +16,7 @@ class ProductDetails extends Component {
   }
 
   render() {
-    const { gallery, ...product } = this.props.productDetails;
+    const { gallery } = this.props.productDetails;
 
     return (
       <div className={classes.wrapper}>
@@ -38,7 +38,7 @@ class ProductDetails extends Component {
           />
         </div>
         <div className={classes.description}>
-          <ProductDescription product={product} />
+          <ProductDescription product={this.props.productDetails} />
         </div>
       </div>
     );

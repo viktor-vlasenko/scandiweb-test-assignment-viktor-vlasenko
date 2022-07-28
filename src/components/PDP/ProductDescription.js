@@ -7,7 +7,43 @@ import Attributes from "./Attributes";
 import classes from "./ProductDescription.module.css";
 
 class ProductDescription extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedAttributes: [],
+    };
+  }
 
+  componentDidMount() {
+    this.setDefaultAttributes();
+  }
+
+  setDefaultAttributes() {
+    const attributes = this.props.product.attributes;
+    if (attributes.length === 0) {
+      return;
+    }
+    let defaultAttributes = [];
+    attributes.forEach((attr) => {
+      const attributeId = attr.id;
+      defaultAttributes.push({
+        attributeId,
+        attributeItemId: attr.items[0].id,
+      });
+    });
+    this.setState({ selectedAttributes: defaultAttributes });
+  }
+
+  setAttributeHandler(attrId, itemId) {
+    const currentSelectedAttributes = [...this.state.selectedAttributes];
+    console.log(currentSelectedAttributes);
+    const attributeToChange = currentSelectedAttributes.find(
+      (attr) => attr.attributeId === attrId
+    );
+    console.log(attributeToChange);
+    attributeToChange.attributeItemId = itemId;
+    this.setState({ selectedAttributes: currentSelectedAttributes });
+  }
 
   findPrice(product) {
     const foundPrice = product.prices.find(
@@ -17,7 +53,13 @@ class ProductDescription extends Component {
   }
 
   addToCartHandler() {
-    this.props.dispatch(cartActions.addItem({ ...this.props.product }));
+    const selectedAttributes = [...this.state.selectedAttributes];
+    this.props.dispatch(
+      cartActions.addItem({
+        selectedAttributes,
+        ...this.props.product,
+      })
+    );
   }
 
   render() {
@@ -29,6 +71,8 @@ class ProductDescription extends Component {
         <h3 className={classes.name}>{product.name}</h3>
         <Attributes
           attributes={product.attributes}
+          selectedAttributes={this.state.selectedAttributes}
+          onAttributeSet={this.setAttributeHandler.bind(this)}
         />
         <div className={classes.price}>
           <h4>PRICE:</h4>

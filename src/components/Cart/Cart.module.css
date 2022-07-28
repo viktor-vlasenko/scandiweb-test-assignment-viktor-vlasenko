@@ -1,0 +1,37 @@
+.cart {
+  margin: 5em 6.25em;
+}
+
+.summary {
+  display: grid;
+  row-gap: 0.5em;
+  grid-template-columns: 4.6em 1fr;
+  margin: 2em 0 1em;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  color: #1d1f22;
+}
+
+.summary p {
+  margin: 0;
+  padding: 0;
+}
+
+.summary span {
+  margin: 0;
+  padding: 0;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.summary .total {
+  font-weight: 500;
+}
+
+.order {
+  width: 280px;
+  padding: 1em 2em;
+}

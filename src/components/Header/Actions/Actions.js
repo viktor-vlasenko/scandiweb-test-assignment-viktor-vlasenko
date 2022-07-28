@@ -4,18 +4,19 @@ import { connect } from "react-redux";
 import classes from "./Actions.module.css";
 import cartIcon from "../../../assets/Empty Cart Black.svg";
 import CurrencySwitcher from "./CurrencySwitcher";
+import { Link } from "react-router-dom";
 
 class Actions extends Component {
   render() {
     return (
       <section className={classes.actions}>
         <CurrencySwitcher />
-        <button className={classes.cart}>
+        <Link className={classes.cart} to='/cart'>
           <img src={cartIcon} alt="Cart opening button" />
           {this.props.cartItemsTotal !== 0 && (
             <div className={classes.number}>{this.props.cartItemsTotal}</div>
           )}
-        </button>
+        </Link>
       </section>
     );
   }
