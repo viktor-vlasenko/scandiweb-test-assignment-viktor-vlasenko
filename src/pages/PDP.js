@@ -23,6 +23,7 @@ class PDP extends Component {
           query Product($productId: String!) {
             product(id: $productId) {
               id
+              inStock
               name
               brand
               gallery

@@ -1,8 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const calculateTotalAmount = () => {
-  
-}
+const hasSameAttributes = (attributesArray1, attributesArray2) => {
+  for (let i = 0; i < attributesArray1.length; i++) {
+    if (
+      attributesArray1[i].attributeItemId !==
+      attributesArray2[i].attributeItemId
+    ) {
+      return false;
+    }
+  }
+  return true;
+};
 
 const cartSlice = createSlice({
   name: "cart",
@@ -18,19 +26,15 @@ const cartSlice = createSlice({
       const addedItem = action.payload;
       const existingItem = state.items.find((item) => item.id === addedItem.id);
       if (existingItem) {
-        let hasSameAttributes = true;
-        for (let i = 0; i < addedItem.selectedAttributes.length; i++) {
-          if (
-            addedItem.selectedAttributes[i].attributeItemId !==
-            existingItem.selectedAttributes[i].attributeItemId
-          ) {
-            hasSameAttributes = false;
-            state.items.push({ itemCount: 1, ...addedItem });
-            break;
-          }
-        }
-        if (hasSameAttributes) {
+        if (
+          hasSameAttributes(
+            addedItem.selectedAttributes,
+            existingItem.selectedAttributes
+          )
+        ) {
           existingItem.itemCount++;
+        } else {
+          state.items.push({ itemCount: 1, ...addedItem });
         }
       } else {
         state.items.push({ itemCount: 1, ...addedItem });
@@ -38,7 +42,40 @@ const cartSlice = createSlice({
       state.totalItems++;
     },
 
-    removeItem(state, action) {},
+    removeItem(state, action) {
+      const itemToRemove = action.payload;
+      const itemCartIndex = state.items.findIndex(
+        (item) =>
+          item.id === itemToRemove.id &&
+          hasSameAttributes(
+            item.selectedAttributes,
+            itemToRemove.selectedAttributes
+          )
+      );
+      if (state.items[itemCartIndex].itemCount === 1) {
+        state.items.splice(itemCartIndex, 1);
+      } else {
+        state.items[itemCartIndex].itemCount--;
+      }
+      state.totalItems--;
+    },
+
+    changeItem(state, action) {
+      const newAttributes = action.payload.newAttributes;
+      const itemToChange = action.payload.item;
+      const existingItem = state.items.find(
+        (item) =>
+          item.id === itemToChange.id &&
+          hasSameAttributes(
+            item.selectedAttributes,
+            itemToChange.selectedAttributes
+          )
+      );
+      const attributeToChange = existingItem.selectedAttributes.find(
+        (attr) => attr.attributeId === newAttributes.attrId
+      );
+      attributeToChange.attributeItemId = newAttributes.itemId;
+    },
   },
 });
 

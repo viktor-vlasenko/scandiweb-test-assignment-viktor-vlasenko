@@ -1,12 +1,18 @@
 import { Component } from "react";
+import { connect } from "react-redux";
 
 import Attributes from "../../PDP/Attributes";
 import ItemCountControls from "./ItemCountControls";
 import CartItemGallery from "./CartItemGallery";
 import { findPrice } from "../../PLP/ProductsList";
 import classes from "./CartItem.module.css";
+import { cartActions } from "../../../store/cart-slice";
 
 class CartItem extends Component {
+  attributeChangeHandler(item, newAttributes) {
+    this.props.dispatch(cartActions.changeItem({item, newAttributes}));
+  }
+
   render() {
     const { item, symbol } = this.props;
 
@@ -24,13 +30,14 @@ class CartItem extends Component {
           <Attributes
             attributes={item.attributes}
             selectedAttributes={item.selectedAttributes}
+            onAttributeChange={this.attributeChangeHandler.bind(this, item)}
           />
         </div>
-        <ItemCountControls itemCount={item.itemCount} />
+        <ItemCountControls item={item} />
         <CartItemGallery gallery={item.gallery} name={item.name} />
       </div>
     );
   }
 }
 
-export default CartItem;
+export default connect()(CartItem);

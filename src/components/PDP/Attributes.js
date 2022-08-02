@@ -1,10 +1,11 @@
 import { Component } from "react";
+import { withRouter } from "react-router";
 
 import classes from "./Attributes.module.css";
 
 class Attributes extends Component {
-  setAttributeHandler(attrId, itemId) {
-    this.props.onAttributeSet(attrId, itemId);
+  changeAttributeHandler(attrId, itemId) {
+    this.props.onAttributeChange({ attrId, itemId });
   }
 
   attributeValueIsSelected(attrId, itemId) {
@@ -38,12 +39,12 @@ class Attributes extends Component {
       <div className={classes.attributes}>
         {this.props.attributes.map((attr) => (
           <div key={attr.id}>
-            <h4>{attr.name}:</h4>
+            <h4 className={classes["attr-name"]}>{attr.name}:</h4>
             <div className={classes["text-attr-items"]}>
               {attr.items.map((item) => (
                 <div
                   key={item.id}
-                  onClick={this.setAttributeHandler.bind(
+                  onClick={this.changeAttributeHandler.bind(
                     this,
                     attr.id,
                     item.id
@@ -64,4 +65,4 @@ class Attributes extends Component {
   }
 }
 
-export default Attributes;
+export default withRouter(Attributes);

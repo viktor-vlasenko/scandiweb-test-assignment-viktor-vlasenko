@@ -34,14 +34,14 @@ class ProductDescription extends Component {
     this.setState({ selectedAttributes: defaultAttributes });
   }
 
-  setAttributeHandler(attrId, itemId) {
+  changeAttributeHandler(attribute) {
     const currentSelectedAttributes = [...this.state.selectedAttributes];
     console.log(currentSelectedAttributes);
     const attributeToChange = currentSelectedAttributes.find(
-      (attr) => attr.attributeId === attrId
+      (attr) => attr.attributeId === attribute.attrId
     );
     console.log(attributeToChange);
-    attributeToChange.attributeItemId = itemId;
+    attributeToChange.attributeItemId = attribute.itemId;
     this.setState({ selectedAttributes: currentSelectedAttributes });
   }
 
@@ -53,6 +53,7 @@ class ProductDescription extends Component {
   }
 
   addToCartHandler() {
+    if (!this.props.product.inStock) return;
     const selectedAttributes = [...this.state.selectedAttributes];
     this.props.dispatch(
       cartActions.addItem({
@@ -65,6 +66,8 @@ class ProductDescription extends Component {
   render() {
     const product = this.props.product;
 
+    const buttonClasses = product.inStock ? classes.button : classes.disabled;
+
     return (
       <section className={classes.wrapper}>
         <h2 className={classes.brand}>{product.brand}</h2>
@@ -72,7 +75,7 @@ class ProductDescription extends Component {
         <Attributes
           attributes={product.attributes}
           selectedAttributes={this.state.selectedAttributes}
-          onAttributeSet={this.setAttributeHandler.bind(this)}
+          onAttributeChange={this.changeAttributeHandler.bind(this)}
         />
         <div className={classes.price}>
           <h4>PRICE:</h4>
@@ -83,7 +86,7 @@ class ProductDescription extends Component {
         </div>
         <Button
           text="ADD TO CART"
-          className={classes.button}
+          className={buttonClasses}
           onClick={this.addToCartHandler.bind(this)}
         />
         <div dangerouslySetInnerHTML={{ __html: product.description }}></div>

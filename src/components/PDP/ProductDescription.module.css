@@ -26,7 +26,11 @@
   color: #1d1f22;
 }
 
-.wrapper h4 {
+.wrapper .price {
+  margin: 1em 0 1.25em 0;
+}
+
+.price h4 {
   margin: 24px 0 8px 0;
   padding: 0;
   font-family: "Roboto Condensed";
@@ -36,10 +40,6 @@
   line-height: 18px;
   text-transform: uppercase;
   color: #1d1f22;
-}
-
-.wrapper .price {
-  margin: 1em 0 1.25em 0;
 }
 
 .wrapper .amount {
@@ -60,4 +60,15 @@
   font-size: 16px;
   line-height: 120%;
   padding: 1em 5.25em;
+}
+
+.disabled {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 120%;
+  padding: 1em 5.25em;
+  background-color: rgb(172, 172, 172);
+  cursor: not-allowed;
 }
