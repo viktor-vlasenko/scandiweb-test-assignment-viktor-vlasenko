@@ -12,14 +12,27 @@ const hasSameAttributes = (attributesArray1, attributesArray2) => {
   return true;
 };
 
+const saveCartLocally = (cart) => {
+  localStorage.setItem("Cart", JSON.stringify(cart));
+};
+
+const loadSavedCart = () => {
+  return JSON.parse(localStorage.getItem("Cart"));
+};
+
 const cartSlice = createSlice({
   name: "cart",
-  initialState: { items: [], totalAmount: 0, totalItems: 0 },
+  initialState: { items: [], totalItems: 0 },
   reducers: {
-    replaceCart(state, action) {
-      state.items = action.payload.items;
-      state.totalAmount = action.payload.totalAmount;
-      state.totalItems = action.payload.totalItems;
+    replaceCart(state) {
+      const loadedCart = loadSavedCart();
+      state.items = loadedCart.items;
+      state.totalItems = loadedCart.totalItems;
+    },
+
+    clearCart(state) {
+      state.items = [];
+      state.totalItems = 0;
     },
 
     addItem(state, action) {
@@ -38,6 +51,7 @@ const cartSlice = createSlice({
         state.items.push({ itemCount: 1, ...addedItem });
       }
       state.totalItems++;
+      saveCartLocally(state);
     },
 
     removeItem(state, action) {
@@ -56,6 +70,7 @@ const cartSlice = createSlice({
         state.items[itemCartIndex].itemCount--;
       }
       state.totalItems--;
+      saveCartLocally(state);
     },
 
     changeItem(state, action) {
@@ -92,6 +107,7 @@ const cartSlice = createSlice({
           state.items[sameAttributesItemIndex].itemCount;
         state.items.splice(sameAttributesItemIndex, 1);
       }
+      saveCartLocally(state);
     },
   },
 });

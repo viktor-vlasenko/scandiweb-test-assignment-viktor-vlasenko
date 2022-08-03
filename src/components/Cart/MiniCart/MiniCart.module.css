@@ -38,6 +38,10 @@
   color: #1d1f22;
 }
 
+.header h3 span {
+  font-weight: 500;
+}
+
 .footer {
   position: absolute;
   bottom: 0;

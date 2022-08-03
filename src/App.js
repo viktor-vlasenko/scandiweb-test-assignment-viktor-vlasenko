@@ -1,14 +1,18 @@
 import { Component, Fragment } from "react";
 import { Switch, Route } from "react-router-dom";
 import { withApollo } from "@apollo/client/react/hoc";
+import { connect } from "react-redux";
 
 import Header from "./components/Header/Header";
 import PDP from "./pages/PDP";
 import PLP from "./pages/PLP";
 import CartPage from "./pages/CartPage";
+import { cartActions } from "./store/cart-slice";
 
 class App extends Component {
-  getDefaultCategoryName() {}
+  componentDidMount() {
+    this.props.dispatch(cartActions.replaceCart());
+  }
 
   render() {
     return (
@@ -33,4 +37,4 @@ class App extends Component {
   }
 }
 
-export default withApollo(App);
+export default withApollo(connect()(App));
