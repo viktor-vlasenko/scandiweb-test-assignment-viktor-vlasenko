@@ -28,22 +28,11 @@ class ProductCard extends Component {
             </div>
           )}
 
-          <div className={classes.spacer} />
-          <p
-            className={`${classes.title} ${
-              !inStock && classes["out-of-stock-content"]
-            }`}
-          >
-            {brand + " " + name}
-          </p>
-          <p
-            className={`${classes.price} ${
-              !inStock && classes["out-of-stock-content"]
-            }`}
-          >
-            {symbol}
-            {price}
-          </p>
+          <div className={classes.text}>
+            <div className={classes.spacer} />
+            <p className={`${classes.title} ${!inStock && classes["out-of-stock-content"]}`}>{brand + " " + name}</p>
+            <p className={`${classes.price} ${!inStock && classes["out-of-stock-content"]}`}>{symbol}{price}</p>
+          </div>
         </li>
       </Link>
     );

@@ -10,6 +10,7 @@ import CartPage from "./pages/CartPage";
 import { cartActions } from "./store/cart-slice";
 
 class App extends Component {
+  // Loading cart if it is stored locally
   componentDidMount() {
     this.props.dispatch(cartActions.replaceCart());
   }
