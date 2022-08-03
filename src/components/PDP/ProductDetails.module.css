@@ -1,4 +1,5 @@
 .wrapper {
+  margin-top: 5em;
   display: grid;
   grid-template-columns: 5em 2.5em 38em 5em 18.25em;
   padding: 5em 13.7em 6.25em 6.25em;

@@ -1,0 +1,27 @@
+.list {
+  max-height: 500px;
+  margin: 58px 0 164px 16px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* Designing for scroll-bar */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(141, 143, 154, 0.5);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #1d1f22;
+  cursor: pointer;
+}

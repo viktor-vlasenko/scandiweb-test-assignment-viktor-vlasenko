@@ -2,7 +2,8 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import { cartActions } from "../../../store/cart-slice";
 
-import classes from "./ItemCountControls.module.css";
+import cartClasses from "./ItemCountControls.module.css";
+import miniCartClasses from "../MiniCart/MiniCartItemCountControls.module.css";
 
 class ItemCountControls extends Component {
   addItem(item) {
@@ -14,11 +15,19 @@ class ItemCountControls extends Component {
   }
 
   render() {
+    const classes = this.props.place === "cart" ? cartClasses : miniCartClasses;
+
     return (
       <div className={classes.controls}>
-        <button onClick={this.addItem.bind(this, this.props.item)}>+</button>
+        <button
+          className={classes.plus}
+          onClick={this.addItem.bind(this, this.props.item)}
+        />
         <p>{this.props.item.itemCount}</p>
-        <button onClick={this.removeItem.bind(this, this.props.item)}>-</button>
+        <button
+          className={classes.minus}
+          onClick={this.removeItem.bind(this, this.props.item)}
+        />
       </div>
     );
   }

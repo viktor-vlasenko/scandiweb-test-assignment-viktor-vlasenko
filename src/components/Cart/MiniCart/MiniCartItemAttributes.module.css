@@ -1,27 +1,23 @@
-.attributes {
-  margin-top: 19px;
-}
-
 .attr-name {
-  margin: 24px 0 8px 0;
+  margin: 8px 0;
   padding: 0;
-  font-family: "Roboto Condensed";
+  font-family: "Raleway";
   font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 18px;
-  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
   color: #1d1f22;
 }
 
 .text-attr-items {
   display: flex;
-  gap: 12px;
+  gap: 8px;
 }
 
 .text-attr-item {
-  width: 4em;
-  height: 2.81em;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 3px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,9 +26,8 @@
   font-family: "Source Sans Pro";
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 18px;
-  letter-spacing: 0.05em;
+  font-size: 14px;
+  line-height: 160%;
   color: #1d1f22;
 }
 
@@ -51,8 +46,8 @@
 }
 
 .swatch-attr-item div {
-  width: 32px;
-  height: 32px;
+  width: 16px;
+  height: 16px;
   cursor: pointer;
 }
 

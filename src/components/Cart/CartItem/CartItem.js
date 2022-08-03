@@ -5,12 +5,12 @@ import Attributes from "../../PDP/Attributes";
 import ItemCountControls from "./ItemCountControls";
 import CartItemGallery from "./CartItemGallery";
 import { findPrice } from "../../PLP/ProductsList";
-import classes from "./CartItem.module.css";
 import { cartActions } from "../../../store/cart-slice";
+import classes from "./CartItem.module.css";
 
 class CartItem extends Component {
   attributeChangeHandler(item, newAttributes) {
-    this.props.dispatch(cartActions.changeItem({item, newAttributes}));
+    this.props.dispatch(cartActions.changeItem({ item, newAttributes }));
   }
 
   render() {
@@ -33,7 +33,7 @@ class CartItem extends Component {
             onAttributeChange={this.attributeChangeHandler.bind(this, item)}
           />
         </div>
-        <ItemCountControls item={item} />
+        <ItemCountControls item={item} place="cart" />
         <CartItemGallery gallery={item.gallery} name={item.name} />
       </div>
     );

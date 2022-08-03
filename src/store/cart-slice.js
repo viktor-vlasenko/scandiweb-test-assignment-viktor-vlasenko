@@ -24,18 +24,16 @@ const cartSlice = createSlice({
 
     addItem(state, action) {
       const addedItem = action.payload;
-      const existingItem = state.items.find((item) => item.id === addedItem.id);
-      if (existingItem) {
-        if (
+      const existingItem = state.items.find(
+        (item) =>
+          item.id === addedItem.id &&
           hasSameAttributes(
             addedItem.selectedAttributes,
-            existingItem.selectedAttributes
+            item.selectedAttributes
           )
-        ) {
-          existingItem.itemCount++;
-        } else {
-          state.items.push({ itemCount: 1, ...addedItem });
-        }
+      );
+      if (existingItem) {
+        existingItem.itemCount++;
       } else {
         state.items.push({ itemCount: 1, ...addedItem });
       }
@@ -63,6 +61,7 @@ const cartSlice = createSlice({
     changeItem(state, action) {
       const newAttributes = action.payload.newAttributes;
       const itemToChange = action.payload.item;
+      // Selecting item in the cart
       const existingItem = state.items.find(
         (item) =>
           item.id === itemToChange.id &&
@@ -71,10 +70,28 @@ const cartSlice = createSlice({
             itemToChange.selectedAttributes
           )
       );
+      // Selecting and changing attribute in the selected item
       const attributeToChange = existingItem.selectedAttributes.find(
         (attr) => attr.attributeId === newAttributes.attrId
       );
       attributeToChange.attributeItemId = newAttributes.itemId;
+
+      // After attributes change. Finding out whether there is another item in the cart with the same attributes.
+      const sameAttributesItemIndex = state.items.findIndex(
+        (item) =>
+          item !== existingItem &&
+          item.id === existingItem.id &&
+          hasSameAttributes(
+            item.selectedAttributes,
+            existingItem.selectedAttributes
+          )
+      );
+      // If there is such an item, merging it with existingItem
+      if (sameAttributesItemIndex >= 0) {
+        existingItem.itemCount +=
+          state.items[sameAttributesItemIndex].itemCount;
+        state.items.splice(sameAttributesItemIndex, 1);
+      }
     },
   },
 });

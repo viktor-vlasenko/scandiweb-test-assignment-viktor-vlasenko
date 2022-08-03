@@ -15,10 +15,7 @@ class ProductDescription extends Component {
   }
 
   componentDidMount() {
-    this.setDefaultAttributes();
-  }
-
-  setDefaultAttributes() {
+    // Setting default product attributes
     const attributes = this.props.product.attributes;
     if (attributes.length === 0) {
       return;
@@ -34,13 +31,11 @@ class ProductDescription extends Component {
     this.setState({ selectedAttributes: defaultAttributes });
   }
 
-  changeAttributeHandler(attribute) {
+  attributeChangeHandler(attribute) {
     const currentSelectedAttributes = [...this.state.selectedAttributes];
-    console.log(currentSelectedAttributes);
     const attributeToChange = currentSelectedAttributes.find(
       (attr) => attr.attributeId === attribute.attrId
     );
-    console.log(attributeToChange);
     attributeToChange.attributeItemId = attribute.itemId;
     this.setState({ selectedAttributes: currentSelectedAttributes });
   }
@@ -73,9 +68,10 @@ class ProductDescription extends Component {
         <h2 className={classes.brand}>{product.brand}</h2>
         <h3 className={classes.name}>{product.name}</h3>
         <Attributes
+          place="PDP"
           attributes={product.attributes}
           selectedAttributes={this.state.selectedAttributes}
-          onAttributeChange={this.changeAttributeHandler.bind(this)}
+          onAttributeChange={this.attributeChangeHandler.bind(this)}
         />
         <div className={classes.price}>
           <h4>PRICE:</h4>

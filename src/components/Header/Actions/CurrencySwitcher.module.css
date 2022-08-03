@@ -4,11 +4,14 @@
   justify-content: flex-end;
   gap: 10px;
   padding: 0 0 0 10px;
+  background-color: #ffffff;
+  border: 0px #ffffff;
+  cursor: pointer;
 }
 
 .switcher p {
   margin: 0;
-  font-family: 'Raleway';
+  font-family: "Raleway";
   font-weight: 500;
   font-size: 18px;
   line-height: 160%;

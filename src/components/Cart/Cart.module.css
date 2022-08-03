@@ -1,5 +1,16 @@
 .cart {
-  margin: 5em 6.25em;
+  margin: 10em 6.25em;
+}
+
+.title {
+  margin-bottom: 55px;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  text-transform: uppercase;
+  color: #1d1f22;
 }
 
 .summary {
