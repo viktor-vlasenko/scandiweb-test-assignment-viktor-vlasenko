@@ -1,5 +1,6 @@
 import { Component, Fragment } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { gql } from "@apollo/client";
 import { withApollo } from "@apollo/client/react/hoc";
 import { connect } from "react-redux";
 
@@ -10,9 +11,37 @@ import CartPage from "./pages/CartPage";
 import { cartActions } from "./store/cart-slice";
 
 class App extends Component {
-  // Loading cart if it is stored locally
+  constructor(props) {
+    super(props);
+    this.state = {
+      defaultCategory: "",
+    };
+  }
+
   componentDidMount() {
+    this.getDefaultURL();
+    // Loading cart if it is stored locally
     this.props.dispatch(cartActions.replaceCart());
+  }
+
+  // Getting category name to redirect to by default after application launch
+  getDefaultURL() {
+    this.props.client
+      .query({
+        query: gql`
+          {
+            categories {
+              name
+            }
+          }
+        `,
+      })
+      .then((result) => {
+        this.setState({
+          defaultCategory: result.data.categories[0].name,
+        });
+      })
+      .catch((error) => console.log(error));
   }
 
   render() {
@@ -21,7 +50,7 @@ class App extends Component {
         <Header />
         <Switch>
           <Route path="/" exact>
-            <PLP />
+            <Redirect to={`/${this.state.defaultCategory}`} />
           </Route>
           <Route path="/cart" exact>
             <CartPage />

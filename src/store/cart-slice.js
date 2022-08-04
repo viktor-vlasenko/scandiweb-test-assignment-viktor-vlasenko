@@ -1,34 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-/**
- * Helping function to determine whether 2 products in the cart have the same selected attributes.
- */
-const hasSameAttributes = (attributesArray1, attributesArray2) => {
-  for (let i = 0; i < attributesArray1.length; i++) {
-    if (
-      attributesArray1[i].attributeItemId !==
-      attributesArray2[i].attributeItemId
-    ) {
-      return false;
-    }
-  }
-  return true;
-};
-
-/**
- * Saves cart in local storage
- */
-const saveCartLocally = (cart) => {
-  localStorage.setItem("Cart", JSON.stringify(cart));
-};
-
-/**
- * Loads cart from local storage
- */
-const loadSavedCart = () => {
-  return JSON.parse(localStorage.getItem("Cart"));
-};
-
 const cartSlice = createSlice({
   name: "cart",
   initialState: { items: [], totalItems: 0 },
@@ -82,47 +53,37 @@ const cartSlice = createSlice({
       state.totalItems--;
       saveCartLocally(state);
     },
-
-    // Changes attribute value in cart
-    changeItem(state, action) {
-      const newAttributes = action.payload.newAttributes;
-      const itemToChange = action.payload.item;
-      
-      // Selecting item in the cart
-      const existingItem = state.items.find(
-        (item) =>
-          item.id === itemToChange.id &&
-          hasSameAttributes(
-            item.selectedAttributes,
-            itemToChange.selectedAttributes
-          )
-      );
-      // Selecting and changing attribute in the selected item
-      const attributeToChange = existingItem.selectedAttributes.find(
-        (attr) => attr.attributeId === newAttributes.attrId
-      );
-      attributeToChange.attributeItemId = newAttributes.itemId;
-
-      // After attributes change. Finding out whether there is another item in the cart with the same attributes.
-      const sameAttributesItemIndex = state.items.findIndex(
-        (item) =>
-          item !== existingItem &&
-          item.id === existingItem.id &&
-          hasSameAttributes(
-            item.selectedAttributes,
-            existingItem.selectedAttributes
-          )
-      );
-      // If there is such an item, merging it with existingItem
-      if (sameAttributesItemIndex >= 0) {
-        existingItem.itemCount +=
-          state.items[sameAttributesItemIndex].itemCount;
-        state.items.splice(sameAttributesItemIndex, 1);
-      }
-      saveCartLocally(state);
-    },
   },
 });
+
+/**
+ * Helping function to determine whether 2 products in the cart have the same selected attributes.
+ */
+const hasSameAttributes = (attributesArray1, attributesArray2) => {
+  for (let i = 0; i < attributesArray1.length; i++) {
+    if (
+      attributesArray1[i].attributeItemId !==
+      attributesArray2[i].attributeItemId
+    ) {
+      return false;
+    }
+  }
+  return true;
+};
+
+/**
+ * Saves cart in local storage
+ */
+const saveCartLocally = (cart) => {
+  localStorage.setItem("Cart", JSON.stringify(cart));
+};
+
+/**
+ * Loads cart from local storage
+ */
+const loadSavedCart = () => {
+  return JSON.parse(localStorage.getItem("Cart"));
+};
 
 export const cartActions = cartSlice.actions;
 

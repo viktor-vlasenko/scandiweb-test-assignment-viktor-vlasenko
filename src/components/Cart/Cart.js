@@ -9,11 +9,13 @@ import classes from "./Cart.module.css";
 // Calculates the total of all cart items using currently selected currency
 export const calculateTotalAmount = (items, currencySymbol) => {
   let totalAmount = 0;
-  for (let item of items) {
-    totalAmount += item.itemCount * findPrice(item, currencySymbol).amount;
+  if (currencySymbol) {
+    for (let item of items) {
+      totalAmount += item.itemCount * findPrice(item, currencySymbol).amount;
+    }
   }
   return totalAmount.toFixed(2);
-}
+};
 
 class Cart extends Component {
   render() {

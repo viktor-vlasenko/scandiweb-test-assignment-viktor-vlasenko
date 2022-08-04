@@ -13,6 +13,6 @@
 }
 
 .logo {
-  position: absolute;
-  left: 50%;
+  position: relative;
+  left: -5%;
 }
