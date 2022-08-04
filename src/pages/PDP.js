@@ -15,7 +15,8 @@ class PDP extends Component {
     };
   }
 
-  getProductDetails = (productId) => {
+  // Fetches product details from BE using product id. Then saves result in state
+  getProductDetails(productId) {
     this.props.client
       .query({
         variables: { productId },

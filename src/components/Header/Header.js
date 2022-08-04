@@ -10,7 +10,7 @@ class Header extends Component {
     return (
       <header className={classes.header}>
         <Navigation />
-        <span>
+        <span className={classes.logo}>
           <img src={logoIcon} alt='Logo of the shop'/>
         </span>
         <Actions />

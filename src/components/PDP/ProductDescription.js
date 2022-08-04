@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 
+import { findPrice } from "../PLP/ProductsList";
 import { cartActions } from "../../store/cart-slice";
 import Button from "../UI/Button";
 import Attributes from "./Attributes";
@@ -16,7 +17,7 @@ class ProductDescription extends Component {
 
   componentDidMount() {
     // Setting default product attributes
-    const attributes = this.props.product.attributes;
+    const { attributes } = this.props.product;
     if (attributes.length === 0) {
       return;
     }
@@ -31,6 +32,7 @@ class ProductDescription extends Component {
     this.setState({ selectedAttributes: defaultAttributes });
   }
 
+  // Changes value of the attribute
   attributeChangeHandler(attribute) {
     const currentSelectedAttributes = [...this.state.selectedAttributes];
     const attributeToChange = currentSelectedAttributes.find(
@@ -38,13 +40,6 @@ class ProductDescription extends Component {
     );
     attributeToChange.attributeItemId = attribute.itemId;
     this.setState({ selectedAttributes: currentSelectedAttributes });
-  }
-
-  findPrice(product) {
-    const foundPrice = product.prices.find(
-      (price) => price.currency.symbol === this.props.symbol
-    );
-    return foundPrice;
   }
 
   addToCartHandler() {
@@ -59,8 +54,7 @@ class ProductDescription extends Component {
   }
 
   render() {
-    const product = this.props.product;
-
+    const { product, symbol } = this.props;
     const buttonClasses = product.inStock ? classes.button : classes.disabled;
 
     return (
@@ -76,8 +70,8 @@ class ProductDescription extends Component {
         <div className={classes.price}>
           <h4>PRICE:</h4>
           <p className={classes.amount}>
-            {this.props.symbol}
-            {this.findPrice(product).amount}
+            {symbol}
+            {findPrice(product, symbol).amount}
           </p>
         </div>
         <Button

@@ -9,7 +9,7 @@ class PLP extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loadedData: undefined,
+      loadedCategories: undefined,
     };
   }
 
@@ -17,6 +17,7 @@ class PLP extends Component {
     this.getAllProducts();
   }
 
+  // Fetches all categories and products from BE. Then saves result in state
   getAllProducts = () => {
     this.props.client
       .query({
@@ -31,6 +32,15 @@ class PLP extends Component {
                 description
                 inStock
                 gallery
+                attributes {
+                  type
+                  name
+                  id
+                  items {
+                    value
+                    id
+                  }
+                }
                 prices {
                   currency {
                     label
@@ -45,7 +55,7 @@ class PLP extends Component {
       })
       .then((result) => {
         this.setState({
-          loadedData: result.data.categories,
+          loadedCategories: result.data.categories,
         });
       })
       .catch((error) => console.log(error));
@@ -53,12 +63,12 @@ class PLP extends Component {
 
   render() {
     let { category } = this.props.match.params;
-    if (!category && this.state.loadedData) {
-      category = this.state.loadedData[0].name;
+    if (!category && this.state.loadedCategories) {
+      category = this.state.loadedCategories[0].name;
     }
     let productsInCategory;
-    if (this.state.loadedData) {
-      productsInCategory = this.state.loadedData.find(
+    if (this.state.loadedCategories) {
+      productsInCategory = this.state.loadedCategories.find(
         (loadedCategory) => loadedCategory.name === category
       ).products;
     }

@@ -11,6 +11,10 @@ class CartItemGallery extends Component {
     };
   }
 
+  /**
+   * Changes displayed image in gallery
+   * Receives value (1 or -1) that determines the direction in which image number should change
+   */ 
   changeImageHandler(value) {
     let newImageNumber = this.state.displayedImageNumber + value;
     if (newImageNumber >= this.props.gallery.length) {

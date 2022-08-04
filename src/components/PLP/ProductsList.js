@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import ProductCard from "./ProductCard";
 import classes from "./ProductList.module.css";
 
+// Finds price of a product based on selected currency
 export const findPrice = (product, symbol) => {
   const foundPrice = product.prices.find(
     (price) => price.currency.symbol === symbol
@@ -21,10 +22,9 @@ class ProductList extends Component {
             this.props.productList.map((product) => (
               <ProductCard
                 key={product.id}
-                id={product.id}
-                name={product.name}
-                brand={product.brand}
+                product={product}
                 image={product.gallery[0]}
+                attributes={product.attributes}
                 price={findPrice(product, this.props.symbol).amount}
                 inStock={product.inStock}
                 symbol={this.props.symbol}

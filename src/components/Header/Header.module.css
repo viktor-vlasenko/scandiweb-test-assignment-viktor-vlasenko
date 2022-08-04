@@ -11,3 +11,8 @@
   align-items: center;
   background-color: #ffffff;
 }
+
+.logo {
+  position: absolute;
+  left: 50%;
+}

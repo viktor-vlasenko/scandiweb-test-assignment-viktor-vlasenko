@@ -9,6 +9,7 @@ import { cartActions } from "../../../store/cart-slice";
 import classes from "./CartItem.module.css";
 
 class CartItem extends Component {
+  // Changing product attribute values in cart
   attributeChangeHandler(item, newAttributes) {
     this.props.dispatch(cartActions.changeItem({ item, newAttributes }));
   }

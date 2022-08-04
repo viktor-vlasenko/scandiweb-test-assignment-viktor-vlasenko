@@ -14,7 +14,13 @@ class Navigation extends Component {
       categories: [],
     };
   }
+  
+  componentDidMount() {
+    this.setState({ loading: true });
+    this.getAllCategories();
+  }
 
+  // Receives categories list from BE and stores it in state
   getAllCategories() {
     this.props.client
       .query({
@@ -35,11 +41,6 @@ class Navigation extends Component {
       .catch((error) => {
         this.setState({ error });
       });
-  }
-
-  componentDidMount() {
-    this.setState({ loading: true });
-    this.getAllCategories();
   }
 
   render() {

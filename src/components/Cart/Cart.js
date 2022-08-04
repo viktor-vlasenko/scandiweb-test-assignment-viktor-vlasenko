@@ -6,6 +6,7 @@ import Button from "../UI/Button";
 import { findPrice } from "../PLP/ProductsList";
 import classes from "./Cart.module.css";
 
+// Calculates the total of all cart items using currently selected currency
 export const calculateTotalAmount = (items, currencySymbol) => {
   let totalAmount = 0;
   for (let item of items) {

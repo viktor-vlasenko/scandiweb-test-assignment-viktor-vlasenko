@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+/**
+ * Helping function to determine whether 2 products in the cart have the same selected attributes.
+ */
 const hasSameAttributes = (attributesArray1, attributesArray2) => {
   for (let i = 0; i < attributesArray1.length; i++) {
     if (
@@ -12,10 +15,16 @@ const hasSameAttributes = (attributesArray1, attributesArray2) => {
   return true;
 };
 
+/**
+ * Saves cart in local storage
+ */
 const saveCartLocally = (cart) => {
   localStorage.setItem("Cart", JSON.stringify(cart));
 };
 
+/**
+ * Loads cart from local storage
+ */
 const loadSavedCart = () => {
   return JSON.parse(localStorage.getItem("Cart"));
 };
@@ -33,6 +42,7 @@ const cartSlice = createSlice({
     clearCart(state) {
       state.items = [];
       state.totalItems = 0;
+      saveCartLocally(state);
     },
 
     addItem(state, action) {
@@ -73,9 +83,11 @@ const cartSlice = createSlice({
       saveCartLocally(state);
     },
 
+    // Changes attribute value in cart
     changeItem(state, action) {
       const newAttributes = action.payload.newAttributes;
       const itemToChange = action.payload.item;
+      
       // Selecting item in the cart
       const existingItem = state.items.find(
         (item) =>

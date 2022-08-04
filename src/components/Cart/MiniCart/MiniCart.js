@@ -13,7 +13,6 @@ class MiniCart extends Component {
 
   render() {
     const { symbol, cartItems, totalItems } = this.props;
-
     const totalAmount = calculateTotalAmount(cartItems, symbol);
 
     return (

@@ -5,6 +5,7 @@ import productPageClasses from "./Attributes.module.css";
 import miniCartClasses from "../Cart/MiniCart/MiniCartItemAttributes.module.css";
 
 class Attributes extends Component {
+  // Changes attribute value
   changeAttributeHandler(attrId, itemId) {
     this.props.onAttributeChange({ attrId, itemId });
   }
@@ -20,6 +21,10 @@ class Attributes extends Component {
   }
 
   render() {
+    /**
+     * Determines which styles to use for component based on place;
+     * place is received as props
+     */
     const classes =
       this.props.place === "miniCart" ? miniCartClasses : productPageClasses;
 

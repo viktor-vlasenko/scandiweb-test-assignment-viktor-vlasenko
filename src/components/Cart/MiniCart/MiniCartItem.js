@@ -8,6 +8,7 @@ import ItemCountControls from "../CartItem/ItemCountControls";
 import classes from "./MiniCartItem.module.css";
 
 class MiniCartItem extends Component {
+  // Changing attribute selected values in MiniCart 
   attributeChangeHandler(item, newAttributes) {
     this.props.dispatch(cartActions.changeItem({ item, newAttributes }));
   }
