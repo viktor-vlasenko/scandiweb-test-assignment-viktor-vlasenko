@@ -18,7 +18,7 @@ Application fetches data from [GraphQL endpoint](https://github.com/scandiweb/ju
 
 ## Functionality
 
-## Main Functionality
+### Main Functionality
 
 Application allows user to:
 1. View product list.
@@ -30,7 +30,7 @@ Application allows user to:
 7. Open cart page and view added products.
 8. Change number of products in the cart both on cart page and in mini version of a cart.
 
-## Features
+### Features
 
 1. Application keeps cart data on page reload.
 2. On "ORDER" or "CHECKOUT" buttons click nothing happens at the moment.
