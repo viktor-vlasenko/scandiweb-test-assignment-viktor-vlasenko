@@ -6,8 +6,10 @@ const cartSlice = createSlice({
   reducers: {
     replaceCart(state) {
       const loadedCart = loadSavedCart();
-      state.items = loadedCart.items;
-      state.totalItems = loadedCart.totalItems;
+      if (loadedCart) {
+        state.items = loadedCart.items;
+        state.totalItems = loadedCart.totalItems;
+      }
     },
 
     clearCart(state) {

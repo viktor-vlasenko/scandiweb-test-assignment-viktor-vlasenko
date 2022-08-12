@@ -3,11 +3,13 @@
 This is a frontend of the e-commerce application. It fetches data from GraphQL endpoint and provides view and interface to interact with data.
 
 ## Launch
+
 ### Frontend
 
-In the project directory, you can run script:
+In the project directory:
 
-### `npm start`
+1. Install dependencies using: `npm install`
+2. Run the script to start dev server: `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -21,6 +23,7 @@ Application fetches data from [GraphQL endpoint](https://github.com/scandiweb/ju
 ### Main Functionality
 
 Application allows user to:
+
 1. View product list.
 2. View each product details page.
 3. Change product's attributes.
