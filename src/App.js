@@ -14,6 +14,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      categoryList: [],
       defaultCategory: "",
     };
   }
@@ -38,6 +39,7 @@ class App extends Component {
       })
       .then((result) => {
         this.setState({
+          categoryList: result.data.categories,
           defaultCategory: result.data.categories[0].name,
         });
       })
@@ -47,7 +49,7 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <Header />
+        <Header categoryList={this.state.categoryList} />
         <Switch>
           <Route path="/" exact>
             <Redirect to={`/${this.state.defaultCategory}`} />

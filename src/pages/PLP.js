@@ -9,21 +9,30 @@ class PLP extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loadedCategories: undefined,
+      loadedProducts: [],
     };
   }
 
   componentDidMount() {
-    this.getAllProducts();
+    const { category } = this.props.match.params;
+    this.getCategoryContent(category);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params !== prevProps.match.params) {
+      const { category } = this.props.match.params;
+      this.getCategoryContent(category);
+    }
   }
 
   // Fetches all categories and products from BE. Then saves result in state
-  getAllProducts = () => {
+  getCategoryContent = (categoryName) => {
     this.props.client
       .query({
+        variables: { categoryName },
         query: gql`
-          {
-            categories {
+          query Category($categoryName: String!) {
+            category(input: { title: $categoryName }) {
               name
               products {
                 id
@@ -55,7 +64,7 @@ class PLP extends Component {
       })
       .then((result) => {
         this.setState({
-          loadedCategories: result.data.categories,
+          loadedProducts: result.data.category.products,
         });
       })
       .catch((error) => console.log(error));
@@ -63,15 +72,7 @@ class PLP extends Component {
 
   render() {
     let { category } = this.props.match.params;
-    if (!category && this.state.loadedCategories) {
-      category = this.state.loadedCategories[0].name;
-    }
-    let productsInCategory;
-    if (this.state.loadedCategories) {
-      productsInCategory = this.state.loadedCategories.find(
-        (loadedCategory) => loadedCategory.name === category
-      ).products;
-    }
+    let productsInCategory = this.state.loadedProducts;
 
     return (
       <ProductList categoryName={category} productList={productsInCategory} />
