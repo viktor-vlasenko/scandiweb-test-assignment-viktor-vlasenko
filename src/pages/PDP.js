@@ -48,6 +48,7 @@ class PDP extends Component {
             }
           }
         `,
+        fetchPolicy: "no-cache",
       })
       .then((result) => {
         this.setState({
@@ -58,7 +59,7 @@ class PDP extends Component {
       .catch((error) => {
         this.setState({ error });
       });
-  };
+  }
 
   componentDidMount() {
     this.setState({ loading: true });

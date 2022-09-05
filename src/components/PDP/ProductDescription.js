@@ -46,11 +46,12 @@ class ProductDescription extends Component {
   addToCartHandler() {
     if (!this.props.product.inStock) return;
     const selectedAttributes = [...this.state.selectedAttributes];
+
+    // Deep-clonning object so attribute values won't become read-only properties
+    const itemToAdd = structuredClone({selectedAttributes, ...this.props.product});
+    
     this.props.dispatch(
-      cartActions.addItem({
-        selectedAttributes,
-        ...this.props.product,
-      })
+      cartActions.addItem(itemToAdd)
     );
   }
 
