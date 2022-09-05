@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
+import parse from 'html-react-parser';
 
 import { findPrice } from "../PLP/ProductsList";
 import { cartActions } from "../../store/cart-slice";
@@ -56,6 +57,9 @@ class ProductDescription extends Component {
   render() {
     const { product, symbol } = this.props;
     const buttonClasses = product.inStock ? classes.button : classes.disabled;
+    
+    // Parsing HTML content from product description
+    const productDescriptionElement = parse(product.description);
 
     return (
       <section className={classes.wrapper}>
@@ -79,7 +83,7 @@ class ProductDescription extends Component {
           className={buttonClasses}
           onClick={this.addToCartHandler.bind(this)}
         />
-        <div dangerouslySetInnerHTML={{ __html: product.description }}></div>
+        <div>{productDescriptionElement}</div>
       </section>
     );
   }
